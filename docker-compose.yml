@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  api:
+    container_name: app-demo-store-api
+    build:
+      context: ./
+    restart: unless-stopped
+    volumes:
+      - ./api:/usr/src/app
+      - node-modules:/usr/src/app/node_modules
+      - ./logs:/home/node/.npm/_logs
+    ports:
+      - 3000:3000
+    networks:
+      - store
+  
+  db:
+    container_name: app-demo-store-db
+    image: mongo:4.2-bionic
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'admin'
+      MONGO_INITDB_ROOT_PASSWORD: 'vGg%ENFsEz%9WrR+Ft2W'
+      MONGO_INITDB_DATABASE: 'admin'
+      MONGO_NON_ROOT_USERNAME: 'app'
+      MONGO_NON_ROOT_PASSWORD: 'z-dMS@L3de2uhT!FXz_!'
+    volumes:     
+      - mongodb_data:/data/db
+    networks:
+      - store
+    ports:
+      - 27017:27017
+    command: mongod --logpath=/dev/null # --quiet
+
+networks:
+  store:
+
+volumes:
+  node-modules:
+  mongodb_data:

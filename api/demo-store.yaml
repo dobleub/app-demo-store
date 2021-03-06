@@ -1,14 +1,107 @@
 schema {
-  query: Query
-  mutation: Mutation
+    query: Query
+    mutation: Mutation
 }
-type User {
-  id: String!
-  name: String
+
+type PromoProduct {
+    promo: String
 }
+type Product {
+	_id: String
+	code: String
+	name: String
+	price: Float
+	promos: [PromoProduct]
+	status: Boolean
+	createdAt: String
+	updatedAt: String
+}
+type Item {
+    _id: String
+    code: String
+}
+type Cart {
+	_id: String
+	username: String
+	items: [Item]
+	total: Float
+	status: Boolean
+	processed: Boolean
+	createdAt: String
+	updatedAt: String
+}
+type Promo {
+	_id: String
+	promo: String
+	type: String
+	minPieces: Float
+	maxPieces: Float
+	value: Float
+	validFrom: String
+	validTo: String
+	status: Boolean
+	createdAt: String
+	updatedAt: String
+}
+
 type Query {
-  user (id: String): User
+	products(data: InputProduct): [Product]
+	
+	carts(data: InputCartNew): [Cart]
+
+	promos(data: InputPromo): [Promo]
 }
 type Mutation {
-  addUser (name: String!): User!
+	newProduct(data: InputProduct): Product
+	updateProduct(data: InputProduct): Product
+	delProduct(data: InputProductId): Product
+	
+	newCart(data: InputCartNew): Cart
+	addItemToCart(data: InputCartItem): Cart
+	delItemFromCart(data: InputCartItem): Cart
+	delCart(data: InputCartId): Cart
+
+	newPromo(data: InputPromo): Promo
+	updatePromo(data: InputPromo): Promo
+	delPromo(data: InputPromoId): Promo
+}
+
+input PromoCode {
+	promo: String
+}
+input InputProduct {
+	_id: String
+	code: String
+	name: String
+	price: Float
+	promos: [PromoCode]
+	status: Boolean
+}
+input InputProductId {
+	_id: String!
+}
+input InputCartNew {
+	_id: String
+	username: String!
+    status: Boolean
+}
+input InputCartItem {
+	_id: String
+	code: String
+}
+input InputCartId {
+	_id: String!
+}
+input InputPromo {
+	_id: String
+	promo: String
+	type: String
+	minPieces: Float
+	maxPieces: Float
+	value: Float
+	validFrom: String
+	validTo: String
+}
+input InputPromoId {
+	_id: String!
 }

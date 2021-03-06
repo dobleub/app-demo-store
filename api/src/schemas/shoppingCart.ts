@@ -1,10 +1,10 @@
 import { makeExecutableSchema, PubSub } from 'apollo-server';
 
 const typeDefs = `
-    type Item {
-        _id: String
-        code: String
-    }
+	type Item {
+	    _id: String
+	    code: String
+	}
 
 	type Cart {
 		_id: String

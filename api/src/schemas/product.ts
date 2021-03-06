@@ -1,7 +1,7 @@
 import { makeExecutableSchema, PubSub } from 'apollo-server';
 
 const typeDefs = `
-	type Promo {
+	type PromoProduct {
 		promo: String
 	}
 	type Product {
@@ -9,7 +9,7 @@ const typeDefs = `
 		code: String
 		name: String
 		price: Float
-		promos: [Promo]
+		promos: [PromoProduct]
 		status: Boolean
 		createdAt: String
 		updatedAt: String

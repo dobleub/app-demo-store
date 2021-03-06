@@ -1,10 +1,10 @@
 schema {
-    query: Query
-    mutation: Mutation
+	query: Query
+	mutation: Mutation
 }
 
 type PromoProduct {
-    promo: String
+	promo: String
 }
 type Product {
 	_id: String
@@ -17,8 +17,8 @@ type Product {
 	updatedAt: String
 }
 type Item {
-    _id: String
-    code: String
+  _id: String
+  code: String
 }
 type Cart {
 	_id: String
@@ -83,7 +83,7 @@ input InputProductId {
 input InputCartNew {
 	_id: String
 	username: String!
-    status: Boolean
+	status: Boolean
 }
 input InputCartItem {
 	_id: String

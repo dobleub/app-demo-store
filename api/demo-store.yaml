@@ -17,8 +17,8 @@ type Product {
 	updatedAt: String
 }
 type Item {
-  _id: String
-  code: String
+	_id: String
+	code: String
 }
 type Cart {
 	_id: String

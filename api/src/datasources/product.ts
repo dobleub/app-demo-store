@@ -58,6 +58,9 @@ class ProductDS extends DataSource {
                         if (isset(data.price)) {
                             product.price = data.price;
                         }
+                        if (isset(data.promos)) {
+                            product.promos = data.promos;
+                        }
                         
                         product.updatedAt = new Date();
                         await product.save();

@@ -55,13 +55,13 @@ const resolvers = {
 			return dataSources.ShoppingCartDS.create(data);
 		},
         addItemToCart: (_:any, data:any, { dataSources }:any) => {
-            return dataSources.ShoppingCart.addItem(data);
+            return dataSources.ShoppingCartDS.addItem(data);
         },
         delItemFromCart: (_:any, data:any, { dataSources }:any) => {
-            return dataSources.ShoppingCart.delItem(data);
+            return dataSources.ShoppingCartDS.delItem(data);
         },
 		delCart: (_:any, data:any,{ dataSources }:any) => {
-			return dataSources.ShoppingCart.delete(data);
+			return dataSources.ShoppingCartDS.delete(data);
 		}
 	}
 };

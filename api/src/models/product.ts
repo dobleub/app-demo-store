@@ -9,6 +9,7 @@ const ProductSchema = new Schema({
     },
 	name: String,
 	price: Number,
+	promos: [new Schema ({promo: String})],
 	status: {
 		type: Boolean,
 		default: true

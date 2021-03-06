@@ -1,5 +1,6 @@
 import { DataSource } from 'apollo-datasource';
 import ShoppingCart from '../models/shoppingCart';
+import Product from '../models/product';
 import { isset } from '../utils/index';
 
 class ShoppingCartDS extends DataSource {
@@ -34,11 +35,13 @@ class ShoppingCartDS extends DataSource {
 		return isset(saved._id) ? saved : null;
 	}
 
-    async addITem(data: any) {
+    async addItem(data: any) {
         if (isset(data._id) && isset(data.itemCode)) {
             return ShoppingCart.findOne({ _id: data._id })
                 .then(async (sc: any) => {
-                    if (sc) {
+					let tmpItem = await Product.findOne({ code: data.itemCode });
+
+                    if (sc && tmpItem) {
                         sc.items.push({code: data.itemCode});
                         
                         sc.updatedAt = new Date();
@@ -51,12 +54,14 @@ class ShoppingCartDS extends DataSource {
         }
     }
     
-    async delITem(data: any) {
-        if (isset(data._id) && isset(data.idItemCode)) {
+    async delItem(data: any) {
+        if (isset(data._id) && isset(data.itemCode)) {
             return ShoppingCart.findOne({ _id: data._id })
                 .then(async (sc: any) => {
-                    if (sc) {
-                        sc.items.id(data.idItemCode).remove();
+					let tmpItem = await Product.findOne({ code: data.itemCode });
+
+					if (sc && tmpItem) {
+                        sc.items.id(data.itemCode).remove();
                         
                         sc.updatedAt = new Date();
                         await sc.save();
@@ -79,7 +84,7 @@ class ShoppingCartDS extends DataSource {
 						sc.deletedAt = new Date();
 						await sc.save();
 					}
-					return sc ? tmpSc : null;
+					return tmpSc ? sc : null;
 				});
 		} else {
 			return null;

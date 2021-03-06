@@ -18,7 +18,7 @@ import { responseType } from './types/response';
 if (appconfig.NODE_ENV == 'development') {
 	set('debug', true);
 }
-connect(mongoURL, {useNewUrlParser: true, useUnifiedTopology: true}, function (err) {
+connect(mongoURL, {useNewUrlParser: true, useUnifiedTopology: true}, function (err:any) {
 	if (err) throw err;
 	console.info(`Successfully connected to DB in ${appconfig.DB_HOST}`);
 });
@@ -29,10 +29,12 @@ const PATH = appconfig.APP_URI || '/graphql';
 // Setting up Server
 const cache:any = {};
 const httpServer = createServer((req:IncomingMessage, res:ServerResponse) => {
-	let response:responseType = { code: 404, data: { msg: 'Not found' } };;
-	let payload:string = '';
+	let response:responseType = { code: 404, data: { msg: 'Not found' } };
+	const { url } = req;
 	
-	if (req.url.includes(PATH)) {
+	if (url && url.includes(PATH)) {
+		let payload:string = '';
+		
 		req.on('data', (chunk:any) => {
 			payload += chunk.toString();
 		});

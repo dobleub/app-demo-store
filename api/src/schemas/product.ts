@@ -1,11 +1,15 @@
 import { makeExecutableSchema, PubSub } from 'apollo-server';
 
 const typeDefs = `
+	type Promo {
+		promo: String
+	}
 	type Product {
 		_id: String
 		code: String
 		name: String
 		price: Float
+		promos: [Promo]
 		status: Boolean
 		createdAt: String
 		updatedAt: String
@@ -20,14 +24,17 @@ const typeDefs = `
 		delProduct(data: InputProductId): Product
 	}
 
+	input PromoCode {
+		promo: String
+	}
 	input InputProduct {
 		_id: String
 		code: String
 		name: String
 		price: Float
+		promos: [PromoCode]
 		status: Boolean
 	}
-	
     input InputProductId {
 		_id: String!
 	}

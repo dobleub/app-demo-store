@@ -24,6 +24,7 @@ const typeDefs = `
 		newCart(data: InputCartNew): Cart
 		addItemToCart(data: InputCartItem): Cart
 		delItemFromCart(data: InputCartItem): Cart
+		calcCart(data: InputCartId): Cart
 		delCart(data: InputCartId): Cart
 	}
 

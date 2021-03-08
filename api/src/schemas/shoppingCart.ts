@@ -61,6 +61,9 @@ const resolvers = {
         delItemFromCart: (_:any, data:any, { dataSources }:any) => {
             return dataSources.ShoppingCartDS.delItem(data);
         },
+        calcCart: (_:any, data:any, { dataSources }:any) => {
+            return dataSources.ShoppingCartDS.calcCart(data);
+        },
 		delCart: (_:any, data:any,{ dataSources }:any) => {
 			return dataSources.ShoppingCartDS.delete(data);
 		}

@@ -73,6 +73,25 @@ class ShoppingCartDS extends DataSource {
         }
     }
 
+    async calcCart(data: any) {
+        if (isset(data._id) && isset(data.itemCode)) {
+            return ShoppingCart.findOne({ _id: data._id })
+                .then(async (sc: any) => {
+					let tmpItem = await Product.findOne({ code: data.itemCode });
+
+					if (sc && tmpItem) {
+                        sc.items.id(data.itemCode).remove();
+                        
+                        sc.updatedAt = new Date();
+                        await sc.save();
+                    }
+                    return sc ? sc : null;
+                });
+        } else {
+            return null;
+        }
+    }
+
 	async delete(data:any) {
 		if (isset(data._id)) {
 			return ShoppingCart.findOne({_id: data._id, status: true})

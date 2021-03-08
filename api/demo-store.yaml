@@ -88,7 +88,7 @@ input InputCartNew {
 }
 input InputCartItem {
 	_id: String
-	code: String
+	itemCode: String
 }
 input InputCartId {
 	_id: String!

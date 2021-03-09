@@ -87,8 +87,8 @@ input InputCartNew {
 	status: Boolean
 }
 input InputCartItem {
-	_id: String
-	code: String
+	_idCart: String
+	itemCode: String
 }
 input InputCartId {
 	_id: String!

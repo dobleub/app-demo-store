@@ -13,5 +13,5 @@ export default {
     DB_DATA:'test',
     DB_AUTH_MECHANISM:'SCRAM-SHA-1',
 
-    NODE_ENV:'development'
+    NODE_ENV:'production'
 }

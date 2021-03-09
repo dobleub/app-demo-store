@@ -27,6 +27,7 @@ services:
       MONGO_NON_ROOT_PASSWORD: 'z-dMS@L3de2uhT!FXz_!'
     volumes:     
       - mongodb_data:/data/db
+      - ./dump:/data/dump
     networks:
       - store
     ports:

@@ -51,10 +51,10 @@ const resolvers = {
 		newProduct: (_:any, { data }:any, { dataSources }:any) => {
 			return dataSources.ProductDS.create(data);
 		},
-        updateProduct: (_:any, data:any, { dataSources }:any) => {
+        updateProduct: (_:any, { data }:any, { dataSources }:any) => {
             return dataSources.ProductDS.update(data);
         },
-		delProduct: (_:any, data:any,{ dataSources }:any) => {
+		delProduct: (_:any, { data }:any,{ dataSources }:any) => {
 			return dataSources.ProductDS.delete(data);
 		}
 	}

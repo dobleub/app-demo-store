@@ -51,10 +51,10 @@ const resolvers = {
 		newPromo: (_:any, { data }:any, { dataSources }:any) => {
 			return dataSources.PromoRuleDS.create(data);
 		},
-        updatePromo: (_:any, data:any, { dataSources }:any) => {
+        updatePromo: (_:any, { data }:any, { dataSources }:any) => {
             return dataSources.PromoRuleDS.update(data);
         },
-		delPromo: (_:any, data:any,{ dataSources }:any) => {
+		delPromo: (_:any, { data }:any, { dataSources }:any) => {
 			return dataSources.PromoRuleDS.delete(data);
 		}
 	}

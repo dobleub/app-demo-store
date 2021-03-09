@@ -15,6 +15,7 @@ FROM node:14-alpine
 # Setting up envs
 ENV N_PATH "/usr/src/app"
 ENV N_USER "node"
+ENV NODE_ENV "production"
 # Install nodemon for production
 RUN npm install -g nodemon
 # Create app dir
@@ -32,6 +33,6 @@ RUN chown -R ${N_USER}:${N_USER} /home/${N_USER}/.npm
 
 USER ${N_USER}
 # CMD [ "pm2", "logs" ]
-CMD [ "yarn", "start-dev" ]
+CMD [ "yarn", "start" ]
 
 EXPOSE 3000

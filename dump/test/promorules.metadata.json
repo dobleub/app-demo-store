@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"test.promorules"},{"v":{"$numberInt":"2"},"unique":true,"key":{"promo":{"$numberInt":"1"}},"name":"promo_1","ns":"test.promorules","background":true}],"uuid":"208f53f8b81d4989988dfce95ab6c108"}

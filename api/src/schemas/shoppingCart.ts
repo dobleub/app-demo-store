@@ -29,14 +29,13 @@ const typeDefs = `
 	}
 
 	input InputCartNew {
-		_id: String
 		username: String!
         status: Boolean
 	}
 	
     input InputCartItem {
-		_id: String
-		code: String
+		_idCart: String
+		itemCode: String
 	}
 	
     input InputCartId {
@@ -55,16 +54,16 @@ const resolvers = {
 		newCart: (_:any, { data }:any, { dataSources }:any) => {
 			return dataSources.ShoppingCartDS.create(data);
 		},
-        addItemToCart: (_:any, data:any, { dataSources }:any) => {
+        addItemToCart: (_:any, { data }:any, { dataSources }:any) => {
             return dataSources.ShoppingCartDS.addItem(data);
         },
-        delItemFromCart: (_:any, data:any, { dataSources }:any) => {
+        delItemFromCart: (_:any, { data }:any, { dataSources }:any) => {
             return dataSources.ShoppingCartDS.delItem(data);
         },
-        calcCart: (_:any, data:any, { dataSources }:any) => {
+        calcCart: (_:any, { data }:any, { dataSources }:any) => {
             return dataSources.ShoppingCartDS.calcCart(data);
         },
-		delCart: (_:any, data:any,{ dataSources }:any) => {
+		delCart: (_:any, { data }:any,{ dataSources }:any) => {
 			return dataSources.ShoppingCartDS.delete(data);
 		}
 	}

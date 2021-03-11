@@ -37,7 +37,7 @@ module.exports = {
 	},
 	module: { rules },
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js']
+		extensions: ['.ts', '.tsx', '.js', '.css', '.scss', '.sass']
 	},
 	devServer: {
 		contentBase: './build',

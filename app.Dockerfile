@@ -1,3 +1,15 @@
+### Node Cache Stage
+FROM node:14-alpine as node_cache_app
+# Configure path
+WORKDIR /src/
+RUN chmod -R 777 /src/
+# Install app dependecies
+USER node
+COPY app/package.json .
+# Install dependencies
+RUN yarn install
+
+
 ### App Stage
 FROM node:14-alpine
 # Setting up envs
@@ -11,15 +23,15 @@ RUN chmod -R 777 ${N_PATH}
 # Adding files to project
 COPY ./app .
 RUN chown -R ${N_USER}:${N_USER} .
-RUN yarn install
+COPY --chown=${N_USER}:${N_USER} --from=node_cache_app /src/node_modules ./node_modules
+COPY --chown=${N_USER}:${N_USER} --from=node_cache_app /src/yarn.lock ./yarn.lock
 
 # Setting up logs dir
-ENV PATH ${N_PATH}/node_modules/.bin:$PATH
 RUN mkdir -p /home/${N_USER}/.npm/_logs
 RUN chown -R ${N_USER}:${N_USER} /home/${N_USER}/.npm
 
 USER ${N_USER}
-# CMD [ "pm2", "logs" ]
+#CMD [ "pm2", "logs" ]
 CMD [ "yarn", "start" ]
 
 EXPOSE 3000

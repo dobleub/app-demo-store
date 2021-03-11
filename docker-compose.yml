@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./app:/usr/src/app
-      - node-modules:/usr/src/app/node_modules
+      - node-modules-app:/usr/src/app/node_modules
       - ./logs:/home/node/.npm/_logs
     ports:
       - 8080:3000
@@ -26,7 +26,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./api:/usr/src/app
-      - node-modules:/usr/src/app/node_modules
+      - node-modules-api:/usr/src/app/node_modules
       - ./logs:/home/node/.npm/_logs
     ports:
       - 3000:3000
@@ -58,5 +58,6 @@ networks:
   store:
 
 volumes:
-  node-modules:
+  node-modules-app:
+  node-modules-api:
   mongodb_data:

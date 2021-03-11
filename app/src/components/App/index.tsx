@@ -1,19 +1,18 @@
-import React, {Fragment, useState} from 'react';
+import React from 'react';
+
+import Header from '../Header';
+import Product from '../Product';
+import Cart from '../Cart';
 
 import styles from './styles.module.scss';
 
-
 const App = ():JSX.Element => {
-	const [value, setValue] = useState<string>("");
-	
 	return (
-		<Fragment>
-			<h1>Todo list</h1>
-			<form>
-				<input type="text" required/>
-				<button type="submit">Add Todo</button>
-			</form>
-		</Fragment>
+		<div className={styles.App}>
+			<Header />
+			<Product />
+			<Cart />
+		</div>
 	);
 };
 

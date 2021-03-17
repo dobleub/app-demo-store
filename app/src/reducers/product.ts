@@ -12,8 +12,8 @@ const productReducer = (state = initialState, action:IAction) => {
 			
 		case PRODUCT.ADD:
 			return [
-				action.payload.product,
-				...state
+				...state,
+				action.payload.product
 			];
 
 		case PRODUCT.DELETE:

@@ -1,0 +1,28 @@
+.AddProduct {
+	background-color: #fafafa;
+	border-radius: 4px;
+	padding: 10px;
+	min-height: 154px;
+	width: 250px;
+	margin: 10px;
+
+	input {
+		font-weight: bold;
+		height: 20px;
+		width: calc(100% - 10px);
+		border: none;
+		overflow: none;
+		border-bottom: 1px solid #333;
+		margin-bottom: 10px; 
+	}
+
+	.Add {
+		text-align: right;
+ 
+		button.Btn {
+			border: none;
+			padding: 10px 15px;
+			font-weight: bold;
+		}
+	}
+}

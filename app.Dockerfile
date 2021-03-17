@@ -34,4 +34,4 @@ USER ${N_USER}
 #CMD [ "pm2", "logs" ]
 CMD [ "yarn", "start" ]
 
-EXPOSE 3000
+EXPOSE 8080

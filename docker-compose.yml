@@ -12,7 +12,7 @@ services:
       - node-modules-app:/usr/src/app/node_modules
       - ./logs:/home/node/.npm/_logs
     ports:
-      - 8080:3000
+      - 8080:8080
     networks:
       - store
     depends_on:

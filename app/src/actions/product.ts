@@ -6,12 +6,16 @@ import ApiUrl from '../utils/apiUrl';
 
 const fetchProducts = ():IAction => {
 	return (dispatch) => {
+		const options = {
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}
 		const data = {
-			query: 'query GetProducts ($data: InputProduct) {products (data: $data) {_id,code,name,price,promos{promo},status,createdAt,updatedAt}',
-			variables: '{"data": {"status": true}}'
+			query: 'query GetProducts ($data: InputProduct) {products (data: $data) {_id,code,name,price,promos{promo},status,createdAt,updatedAt}}',
+			variables: '{\"data\": {\"status\": true}}'
 		};
-		return axios.post(ApiUrl, data)
-			.then((res) => {
+		return axios.post(ApiUrl,data,options).then((res) => {
 				dispatch({
 					type: PRODUCT.FETCH,
 					payload: {

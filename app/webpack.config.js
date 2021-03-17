@@ -41,7 +41,8 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: './build',
-		port: 5000
+		host: '0.0.0.0',
+		port: 8080
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

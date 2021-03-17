@@ -10,12 +10,10 @@ interface IProduct {
 	_id?: string,
 	code: string
 	name: string,
+	desc: string,
 	price: number,
-	promos: IPromoCode[],
-	status: boolean,
-	createdAt: string,
-	updatedAt: string,
-	deletedAt: string
+	promos?: IPromoCode[],
+	status: boolean
 }
 interface IPromo {
 	_id?: string
@@ -26,10 +24,7 @@ interface IPromo {
 	value: number,
 	validFrom: string,
 	validTo?: string,
-	status: boolean,
-	createdAt: string,
-	updatedAt: string,
-	deletedAt: string
+	status: boolean
 }
 interface ICode {
 	_id?: string,
@@ -41,10 +36,7 @@ interface ICart {
 	items: ICode[],
 	total: number,
 	status: boolean,
-	processed: boolean,
-	createdAt: string,
-	updatedAt: string,
-	deletedAt: string
+	processed: boolean
 }
 
 export {

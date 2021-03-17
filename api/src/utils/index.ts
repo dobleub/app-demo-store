@@ -1,8 +1,8 @@
 const responseHeaders = {
-	'access-control-allow-origin': '*',
-	'access-control-allow-methods': 'GET, POST',
-	'access-control-allow-headers': 'content-type, accept',
-	'access-control-max-age': 10,
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+	'Access-Control-Allow-Headers': 'Content-Type,Accept,Authorization',
+	'Access-Control-Max-Age': 1000,
 	'Content-Type': 'application/json'
 };
 

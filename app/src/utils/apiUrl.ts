@@ -1,3 +1,3 @@
-const ApiUrl = 'http://app-demo-store-api:3000/api/';
+const ApiUrl = 'http://localhost:3000/api/';
 
 export default ApiUrl;

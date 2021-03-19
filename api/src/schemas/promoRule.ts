@@ -33,6 +33,7 @@ const typeDefs = `
 		value: Float
 		validFrom: String
 		validTo: String
+		status: Boolean
 	}
 	
     input InputPromoId {

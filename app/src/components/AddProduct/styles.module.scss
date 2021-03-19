@@ -6,7 +6,7 @@
 	width: 250px;
 	margin: 10px;
 
-	input {
+	input, select {
 		font-weight: bold;
 		height: 20px;
 		width: calc(100% - 10px);
@@ -14,6 +14,10 @@
 		overflow: none;
 		border-bottom: 1px solid #333;
 		margin-bottom: 10px; 
+	}
+
+	.Desc {
+		font-weight: normal;
 	}
 
 	.Add {

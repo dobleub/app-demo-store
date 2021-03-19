@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,17 +7,21 @@ import { cartActions } from '../../actions';
 import styles from './styles.module.scss';
 
 function RenderItems({ cart }):JSX.Element {
-	if (cart.length === 0) {
+	if (cart.items.length === 0) {
 		return <div>No Items</div>;
 	} else {
 		return <div>
-			{cart.map((item, idx) => <div key={idx}>{item.title} - {item.body}</div>)}
+			{cart.items.map((item, idx) => <div key={idx}>{item.name} - {item.price}</div>)}
 		</div>
 	}
 }
 
 const Cart = ({ cart, cartActions }):JSX.Element => {
-	console.log('cart', cart);
+	
+	useEffect(() => {
+		cartActions.fetchCart();
+	}, []);
+	
 	return (
 		<section className={styles.Cart}>
 			<RenderItems cart={cart} />

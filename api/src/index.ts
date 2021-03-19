@@ -30,10 +30,11 @@ const PATH = appconfig.APP_URI || '/graphql';
 const cache:any = {};
 const httpServer = createServer((req:IncomingMessage, res:ServerResponse) => {
 	let response:responseType = { code: 404, data: { msg: 'Not found' } };
-	const { url } = req;
+	const { url, headers, method } = req;
 	
 	if (url && url.includes(PATH)) {
 		let payload:string = '';
+		let data:any = [];
 		
 		req.on('data', (chunk:any) => {
 			payload += chunk.toString();
@@ -41,12 +42,14 @@ const httpServer = createServer((req:IncomingMessage, res:ServerResponse) => {
 	
 		req.on('end', async () => {
 			try {
-				const { query, variables } = JSON.parse(payload);
-				
-				cache[query] = cache[query] || compileQuery(superSchema, parse(query));
-				
+				if (method !== 'OPTIONS') {
+					const { query, variables } = JSON.parse(payload);
+					
+					cache[query] = cache[query] || compileQuery(superSchema, parse(query));
+					data = await cache[query].query({}, { dataSources }, variables);
+				}
 				response.code = 200;
-				response.data = await cache[query].query({}, { dataSources }, variables);
+				response.data = data;
 			} catch (error) {
 				response = {code: 400, data: {msg: 'Bad Request'}};
 			}

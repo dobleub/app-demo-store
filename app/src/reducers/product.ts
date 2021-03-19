@@ -17,7 +17,7 @@ const productReducer = (state = initialState, action:IAction) => {
 			];
 
 		case PRODUCT.DELETE:
-			return state.filter(item => item.id !== action.payload.id);
+			return state.filter(item => item._id !== action.payload._id);
 			
 		default: 
 			return state;

@@ -6,20 +6,18 @@ import ApiUrl from '../utils/apiUrl';
 
 const fetchProducts = ():IAction => {
 	return (dispatch) => {
-		const options = {
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}
 		const data = {
-			query: 'query GetProducts ($data: InputProduct) {products (data: $data) {_id,code,name,price,promos{promo},status,createdAt,updatedAt}}',
-			variables: '{\"data\": {\"status\": true}}'
+			query: "query GetProducts ($data: InputProduct) {products (data: $data) {_id,code,name,description,price,promos{promo}}}",
+			variables: {data: {status: true}}
 		};
-		return axios.post(ApiUrl,data,options).then((res) => {
+		axios.post(ApiUrl,data)
+			.then(({data}) => {
+				let products = data.data.products || [];
+				
 				dispatch({
 					type: PRODUCT.FETCH,
 					payload: {
-						products: res.data
+						products
 					}
 				});
 			});
@@ -27,11 +25,25 @@ const fetchProducts = ():IAction => {
 }
 
 const addProduct = (product):IAction => {
-	return {
-		type: PRODUCT.ADD,
-		payload: {
-			product
-		}
+	return (dispatch) => {
+		const data = {
+			query: "mutation NewProduct ($data: InputProduct) {newProduct (data: $data) {_id,code,name,price,promos{promo}}}",
+			variables: {data: product}
+		};
+
+		axios.post(ApiUrl, data)
+			.then(({data}) => {
+				let product = data.data.newProduct || null;
+
+				if (product) {
+					dispatch({
+						type: PRODUCT.ADD,
+						payload: {
+							product
+						}
+					});
+				}
+			});
 	}
 }
 
@@ -44,12 +56,29 @@ const updateProduct = (product):IAction => {
 	}
 }
 
-const delProduct = (id):IAction => {
-	return {
-		type: PRODUCT.DELETE,
-		payload: {
-			id
-		}
+const delProduct = (_id):IAction => {
+	return (dispatch) => {
+		const data = {
+			query: "mutation DelProduct ($data: InputProductId) {delProduct (data: $data) {_id,code,name}}",
+			variables: {data: {
+				_id
+			}}
+		};
+
+		axios.post(ApiUrl, data)
+			.then(({data}) => {
+				let product = data.data.delProduct || null;
+
+				if (product) {
+					dispatch({
+						type: PRODUCT.DELETE,
+						payload: {
+							_id
+						}
+					});
+				}
+			});
+
 	}
 }
 

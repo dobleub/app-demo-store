@@ -8,6 +8,7 @@ const ProductSchema = new Schema({
         dropDups: true
     },
 	name: String,
+	description: String,
 	price: Number,
 	promos: [new Schema ({promo: String})],
 	status: {

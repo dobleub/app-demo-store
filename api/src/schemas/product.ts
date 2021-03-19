@@ -8,6 +8,7 @@ const typeDefs = `
 		_id: String
 		code: String
 		name: String
+		description: String
 		price: Float
 		promos: [PromoProduct]
 		status: Boolean
@@ -31,6 +32,7 @@ const typeDefs = `
 		_id: String
 		code: String
 		name: String
+		description: String
 		price: Float
 		promos: [PromoCode]
 		status: Boolean

@@ -34,7 +34,7 @@ class ProductDS extends DataSource {
 		if (isset(data.price)) {
 			match.price = data.price;
 		}
-		return await Product.find(match).sort({_id: -1});
+		return await Product.find(match).sort({_id: 1});
 	}
 
 	async create(data:any) {

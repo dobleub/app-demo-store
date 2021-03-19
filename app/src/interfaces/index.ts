@@ -10,7 +10,7 @@ interface IProduct {
 	_id?: string,
 	code: string
 	name: string,
-	desc: string,
+	description: string,
 	price: number,
 	promos?: IPromoCode[],
 	status: boolean

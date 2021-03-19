@@ -1,7 +1,9 @@
 import { CART } from '../actions/types';
 import { IAction } from '../interfaces';
 
-const initialState = [];
+const initialState = {
+	items: []
+};
 
 const cartReducer = (state = initialState, action:IAction) => {
 	switch(action.type) {
@@ -9,13 +11,16 @@ const cartReducer = (state = initialState, action:IAction) => {
 			return state;
 			
 		case CART.ADD:
-			return [
-				action.payload.item,
-				...state
-			];
+			return {
+				...state,
+				items: [
+					...state.items,
+					action.payload.item
+				]
+			};
 
 		case CART.DELETE:
-			return state.filter(item => item.id !== action.payload.id);
+			return state.items.filter(item => item._id !== action.payload._id);
 			
 		default: 
 			return state;
